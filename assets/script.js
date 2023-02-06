@@ -1,19 +1,17 @@
 var generateBtn = document.querySelector("#generate");
 
-let pwd = {
-  numeric: "0123456789",
-  lower: "abcdefghijklmnopqrstuvwxyz",
-  upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  special: "~!@#$%^&*(){}[]:;<>?/-_+=|"
-  }
-
+var numeric = "0123456789";
+var lower = "abcdefghijklmnopqrstuvwxyz";
+var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var special = "~!@#$%^&*(){}[]:;<>?/-_+=|";
+var pwd = ''
+  
 function validatePwdLength() {
   var pwdLength = 0;
   var length = prompt("Enter a desired password length between 8 and 128 characters.");
   if (length >=8 && length <= 128) {
     pwdLength = length
-  }
-  
+  }  
 }
 
 function validatePwdPrompts() {
@@ -36,7 +34,7 @@ function collectInfo() {
 function generatePwd(){
   collectInfo();
 
-  let pwd = '';
+  // let pwd = '';
   let iterator = 1;
 
   while (iterator <= length){
