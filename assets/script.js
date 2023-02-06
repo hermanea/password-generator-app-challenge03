@@ -1,30 +1,22 @@
 var generateBtn = document.querySelector("#generate");
 
 let pwd = {
-  pwdLength: 0,
-  numbers: "0123456789",
-  lowercase: "abcdefghijklmnopqrstuvwxyz",
-  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  uniqueCharacters: "~!@#$%^&*(){}[]:;<>?/-_+=|",
-  numeric: false,
-  lower: false,
-  upper: false,
-  special: false,
+  numeric: "0123456789",
+  lower: "abcdefghijklmnopqrstuvwxyz",
+  upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  special: "~!@#$%^&*(){}[]:;<>?/-_+=|"
+  }
+
+function validatePwdLength() {
+  var pwdLength = 0;
+  var length = prompt("Enter a desired password length between 8 and 128 characters.");
+  if (length >=8 && length <= 128) {
+    pwdLength = length
+  }
+  
 }
 
-function validatepwdLength() {
-  let toContinue = true;
-  while (toContinue) {
-    try {
-      pwd.pwdLength = parseInt(window.prompt("Enter a desired password length between 8 and 128 characters."));
- 
-    if (pwd.pwdLength && (pwd.pwdLength >= 8 && pwd.pwdLength <= 128)){
-      toContinue = false;}
-    }
-  } 
-}
-
-function validatepwdPrompts() {
+function validatePwdPrompts() {
   while (!pwd.numeric && !pwd.lower && !pwd.upper && !pwd.special){
     window.alert("Please select OK on at least one of the following prompts.");
     pwd.numeric = window.confirm("Does your password require numbers? Click OK to continue, and Cancel to skip.");
@@ -34,52 +26,54 @@ function validatepwdPrompts() {
   }
 }
 
+// Functhion runs validate password length function and validate password promps function.
 function collectInfo() {
-  validatepwdLength();
-  validatepwdPrompts();
+  validatePwdLength();
+  validatePwdPrompts();
 }
 
-function generatePassword(){
+// Function runs collect info function and rondomizes.
+function generatePwd(){
   collectInfo();
 
-  let password = '';
+  let pwd = '';
   let iterator = 1;
 
-  while (iterator <= pass.passLength){
+  while (iterator <= length){
 
-    if (pwd.numeric & iterator <= pwd.pwdLength){
+    if (pwd.numeric & iterator <= pwd.length){
       password += pwd.numeric[Math.floor(Math.random() * pwd.numeric.length)];
       iterator++;
     }
 
-    if (pwd.lower & iterator <= pwd.pwdLength){
-      password += pwd.lowercase[Math.floor(Math.random() * pwd.lowercase.length)];
+    if (pwd.lower & iterator <= pwd.length){
+      password += pwd.lower[Math.floor(Math.random() * pwd.lower.length)];
       iterator++;
     }
 
-    if (pwd.upper & iterator <= pwd.pwdLength){
-      password += pwd.uppercase[Math.floor(Math.random() * pwd.uppercase.length)];
+    if (pwd.upper & iterator <= pwd.length){
+      password += pwd.upper[Math.floor(Math.random() * pwd.upper.length)];
       iterator++;
     }
 
-    if (pwd.uniqueCharacters & iterator <= pwd.pwdLength){
-      password += pass.uniqueCharacters[Math.floor(Math.random() * pwd.uniqueCharacters.length)];
+    if (pwd.special & iterator <= pwd.length){
+      password += pwd.special[Math.floor(Math.random() * pwd.special.length)];
       iterator++
     }
 
   }
   
-  return password;
+  return pwd;
 }
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
+function writePwd() {
+  var password = generatePwd();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate password button
+generateBtn.addEventListener("click", writePwd);

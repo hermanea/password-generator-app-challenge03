@@ -2,7 +2,7 @@
 
 ## Description
 
-The purpose of this exercise was to develop a random password generator that could be slightly customized to the user's requirements.
+The purpose of this project was to develop a random password generator that could be customized to the user's requirements.
 
 ## Installation
 
