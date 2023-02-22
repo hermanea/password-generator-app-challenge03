@@ -16,7 +16,7 @@ Below is a screenshot of the app.
 
 ![Screenshot](/assets/images/screencapture-hermanea-github-io-password-generator-app-challenge03-2023-02-22-10_10_16.png "App Screenshot")
 
-You can use the app [Here](https://hermanea.github.io/password-generator-app-challenge03/)
+You can use the app [Here](https://hermanea.github.io/password-generator-app-challenge03/).
 
 ## Credits
 
