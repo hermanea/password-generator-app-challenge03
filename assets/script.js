@@ -4,14 +4,20 @@ var numeric = "0123456789";
 var lower = "abcdefghijklmnopqrstuvwxyz";
 var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var special = "~!@#$%^&*(){}[]:;<>?/-_+=|";
-var pwd = ''
+var pwd = {
+  numeric: false,
+  lower: false,
+  upper: false,
+  special: false
+};
   
 function validatePwdLength() {
-  var pwdLength = 0;
   var length = prompt("Enter a desired password length between 8 and 128 characters.");
   if (length >=8 && length <= 128) {
-    pwdLength = length
-  }  
+    return length;
+  }  else {
+    return validatePwdLength();
+  }
 }
 
 function validatePwdPrompts() {
@@ -26,42 +32,44 @@ function validatePwdPrompts() {
 
 // Functhion runs validate password length function and validate password promps function.
 function collectInfo() {
-  validatePwdLength();
+  var length = validatePwdLength();
   validatePwdPrompts();
+  return { length: length, pwd: pwd };
 }
 
 // Function runs collect info function and rondomizes.
 function generatePwd(){
-  collectInfo();
+  var info = collectInfo();
+  var password = '';
 
   // let pwd = '';
-  let iterator = 1;
+  var iterator = 1;
 
-  while (iterator <= length){
+  while (iterator <= info.length){
 
-    if (pwd.numeric & iterator <= pwd.length){
-      password += pwd.numeric[Math.floor(Math.random() * pwd.numeric.length)];
+    if (info.pwd.numeric && iterator <= info.length){
+      password += numeric[Math.floor(Math.random() * numeric.length)];
       iterator++;
     }
 
-    if (pwd.lower & iterator <= pwd.length){
-      password += pwd.lower[Math.floor(Math.random() * pwd.lower.length)];
+    if (info.pwd.lower && iterator <= info.length){
+      password += lower[Math.floor(Math.random() * lower.length)];
       iterator++;
     }
 
-    if (pwd.upper & iterator <= pwd.length){
-      password += pwd.upper[Math.floor(Math.random() * pwd.upper.length)];
+    if (info.pwd.upper && iterator <= info.length){
+      password += upper[Math.floor(Math.random() * upper.length)];
       iterator++;
     }
 
-    if (pwd.special & iterator <= pwd.length){
-      password += pwd.special[Math.floor(Math.random() * pwd.special.length)];
+    if (info.pwd.special && iterator <= info.length){
+      password += special[Math.floor(Math.random() * special.length)];
       iterator++
     }
 
   }
   
-  return pwd;
+  return password;
 }
 
 // Write password to the #password input
